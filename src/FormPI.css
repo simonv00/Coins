@@ -1,0 +1,35 @@
+/* input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2em;
+    border-radius: 0.2em;
+    border: 1px solid gray;
+    font-size: medium;
+    
+} */
+
+input {
+    margin-top: 2em;
+    margin-right: 2em;
+    display: flex;
+    border-radius: 0.2em;
+    border: 1px solid lightgray;
+    font-size: medium;
+    
+} 
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2em;
+    font-size: medium;
+    
+}
+
+
+.nomYape {
+    display: flex;
+    flex-direction: row;
+}
