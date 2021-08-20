@@ -3,9 +3,8 @@ import Formulario from './Formulario'
 import Barra from './Barra'
 import FormPI from './FormPI'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col, Button, Form, Div, Select } from 'react-bootstrap'
 
-class App2 extends Component {
+class Registro extends Component {
     render() {
         return (
             <div >
@@ -20,4 +19,4 @@ class App2 extends Component {
 }
 
 
-export default App2
+export default Registro

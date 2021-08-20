@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import './Formulario.css'
 /* import 'bootstrap/dist/css/bootstrap.min.css' */
-import { Container, Row, Col, Button, Form, FormControl, Select, InputGroup, DropdownButton } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 
 
 

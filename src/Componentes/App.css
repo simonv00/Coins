@@ -1,4 +1,3 @@
-import
 
 
 .App {
@@ -16,7 +15,6 @@ import
   }
 }
 
-
 .App-header {
   background: linear-gradient(20deg, azure , skyblue);
   background: linear-gradient(20deg, #00bfd7 , #004e59);
@@ -27,6 +25,14 @@ import
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Up {
+  justify-content: flex-start ;
+}
+
+.margin {
+  margin-top: 2em;
 }
 
 
