@@ -15,6 +15,11 @@
   }
 }
 
+td{
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .App-header {
   background: linear-gradient(20deg, azure , skyblue);
   background: linear-gradient(20deg, #00bfd7 , #004e59);
