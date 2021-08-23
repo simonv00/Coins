@@ -60,7 +60,6 @@ class Visualizacion extends Component {
         const { students } = this.state
         return (
             <div>
-                <Barra />
                 <div className='App-header Up'>
                     <div className='margin'>
                         <h1> Lista de estudiantes</h1>

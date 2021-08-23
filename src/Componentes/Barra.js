@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import {Navbar,Container, Nav,Image} from 'react-bootstrap'
+import { Navbar, Container, Nav, Image } from 'react-bootstrap'
+import { BrowserRouter as Router,Link } from 'react-router-dom'
+
 class Barra extends Component {
     render() {
         return (
@@ -12,8 +14,12 @@ class Barra extends Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#agregar estudiante">Buscar</Nav.Link>
-                            <Nav.Link href="#buscar">Agregar estudiante</Nav.Link>
+                            <Link to='/Visualizacion' >
+                                    Buscar
+                            </Link>
+                            <Link to='/Registro'>
+                                    Agregar estudiante
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
