@@ -4,7 +4,6 @@ import { Table,Button } from 'react-bootstrap'
 import Barra from './Barra'
 import './Visualizacion.css'
 import Busqueda from './Busqueda'
-import SeccionLista from './SeccionLista'
 
 const estudiantes = [
     {
@@ -69,7 +68,6 @@ class Visualizacion extends Component {
                     </div>
                     <div>
                         <Table>
-
                         <thead>
                             <tr>
                                 <th>
@@ -86,7 +84,6 @@ class Visualizacion extends Component {
                         <tbody>
                         {students.map(est => (
                             <tr>
-
                             <td>{est.nombre1} {est.nombre2}</td>
                             <td>{est.apellido1} {est.apellido2}</td>
                             <td>{est.cedula}</td>
@@ -98,7 +95,6 @@ class Visualizacion extends Component {
                         </tbody>
                         </Table>
                     </div>
-
                 </div>
             </div>
         )
@@ -108,18 +104,3 @@ class Visualizacion extends Component {
 
 export default Visualizacion
 
-
-{/* <tr>
-{students.map(est => (
-    <SeccionLista
-    nombre1={est.nombre1}
-    nombre2={est.nombre2}
-    apellido1={est.apellido1}
-    apellido2={est.apellido2}
-    correo={est.correo}
-    cedula={est.cedula}
-    telefono={est.telefono}
-    estado={est.estado} />
-    
-    ))}
-    </tr> */}

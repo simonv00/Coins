@@ -23,31 +23,6 @@ export default class App extends Component {
                 </Router>
             </div>
 
-            /*             <Router>
-                            <div>
-                                <nav>
-                                    <ul>
-                                        <li>
-                                            <Link to="/inicio">inicio</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/Registro">Regis</Link>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <Switch>
-                                    <Route path='/'>
-            
-                                    </Route>
-                                    <Route path='/inicio'>
-            
-                                    </Route>
-                                    <Route path='/Registro'>
-                                        <Registro />
-                                    </Route>
-                                </Switch>
-                            </div>
-                        </Router> */
         )
     }
 }

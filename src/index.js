@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-/* import Registro from './Views/Registro';
-import Visualizacion from './Componentes/Visualizacion' */
 import App from './Views/App'
 /* import reportWebVitals from './reportWebVitals'; */
 

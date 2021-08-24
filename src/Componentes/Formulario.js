@@ -54,14 +54,6 @@ class Formulario extends Component {
                             <Row>
                                 <Col xs='auto' >
                                     <Form.Group>
-{/*                                         <select placeholder='Tipo de documento' className='Dropdown'>
-                                            <option value="default" disabled hidden>
-                                            Tipo de documento
-                                            </option>
-                                            <option value="CC">CC</option>
-                                            <option value="TI">TI</option>
-                                            <option value="CE">CE</option>
-                                        </select> */}
                                         <Form.Label column='sm'> Tipo de Id</Form.Label>
                                         <Form.Control as='Select'>
                                             <option value="CC">CC</option>
