@@ -31,7 +31,7 @@ class Formulario extends Component {
       estado: true,
     },
   };
-
+// buenas
   actualizar = (event) => {
     console.log(this.state)
     this.setState({
@@ -40,7 +40,7 @@ class Formulario extends Component {
   };
 
 /*   
-
+        
   validateAlpha = (event) => {
     this.setState({
       validaciones: {
