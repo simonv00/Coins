@@ -3,8 +3,7 @@ import "./App.css";
 import "./Formulario.css";
 /* import 'bootstrap/dist/css/bootstrap.min.css' */
 import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
-import sendStudent from "../MVC/Controlador";
-import validate from "../MVC/EstudianteBO";
+import Axios from "axios";
 
 class Formulario extends Component {
   state = {
@@ -34,64 +33,58 @@ class Formulario extends Component {
   };
 
   actualizar = (event) => {
+    console.log(this.state)
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
+/*   
+
   validateAlpha = (event) => {
-      this.setState({
-          validaciones : {
-              ...this.validaciones,
-            [event.target.name]: (validate.validateAlpha(event.target.value))
-          
-        }
-      })
-      
+    this.setState({
+      validaciones: {
+        ...this.validaciones,
+        [event.target.name]: validate.validateAlpha(event.target.value),
+      },
+    });
   };
 
   validateAlpha2 = (event) => {
     this.setState({
-        validaciones : {
-            ...this.validaciones,
-          [event.target.name]: (validate.validateAlpha2(event.target.value))
-        
-      }
-    })
-};
+      validaciones: {
+        ...this.validaciones,
+        [event.target.name]: validate.validateAlpha2(event.target.value),
+      },
+    });
+  };
 
-validateNumber = (event) => {
+  validateNumber = (event) => {
     this.setState({
-        validaciones : {
-            ...this.validaciones,
-          [event.target.name]: (validate.validateNumber(event.target.value))
-        
-      }
-    })
-};
+      validaciones: {
+        ...this.validaciones,
+        [event.target.name]: validate.validateNumber(event.target.value),
+      },
+    });
+  };
 
-validateMail = (event) => {
+  validateMail = (event) => {
     this.setState({
-        validaciones : {
-            ...this.validaciones,
-          [event.target.name]: (validate.validateMail(event.target.value))
-        
-      }
-    })
-};
+      validaciones: {
+        ...this.validaciones,
+        [event.target.name]: validate.validateMail(event.target.value),
+      },
+    });
+  };
 
-validateId = (event) => {
+  validateId = (event) => {
     this.setState({
-        validaciones : {
-            ...this.validaciones,
-          [event.target.name]: (validate.validateId(event.target.value))
-        
-      }
-    })
-};
-
-
-
+      validaciones: {
+        ...this.validaciones,
+        [event.target.name]: validate.validateId(event.target.value),
+      },
+    });
+  }; */
 
   handleSubmit = (e) => {
     const {
@@ -106,21 +99,21 @@ validateId = (event) => {
       monto,
       estado,
     } = this.state;
-    const v = sendStudent(
-      nombre1,
-      nombre2,
-      apellido1,
-      apellido2,
-      telefono,
-      correo,
-      id,
-      tipoID,
-      monto,
-      estado
-    );
-    this.setState({
-      valid: v,
-    });
+
+    Axios.post("http://localhost:3001/Registro/api/insert", {
+      Numero_Documento: id,
+      Primer_Nombre: nombre1,
+      Segundo_Nombre: nombre2,
+      Primer_Apellido: apellido1,
+      Segundo_Apellido: apellido2,
+      Celular: telefono,
+      Tipo_Documento: tipoID,
+      Correo: correo,
+      Saldo: monto,
+      Estado: estado,
+    }).then(() => {
+      alert('succesfull insert');
+    })
   };
 
   render() {
@@ -254,3 +247,31 @@ validateId = (event) => {
 }
 
 export default Formulario;
+
+/* const {
+  nombre1,
+  nombre2,
+  apellido1,
+  apellido2,
+  telefono,
+  correo,
+  id,
+  tipoID,
+  monto,
+  estado,
+} = this.state;
+const v = sendStudent(
+  nombre1,
+  nombre2,
+  apellido1,
+  apellido2,
+  telefono,
+  correo,
+  id,
+  tipoID,
+  monto,
+  estado
+);
+this.setState({
+  valid: v,
+}); */
