@@ -111,7 +111,8 @@ class Formulario extends Component {
       Correo: correo,
       Saldo: monto,
       Estado: estado,
-    }).then(() => {
+    }).then((res) => {
+      console.log(res)
       alert('succesfull insert');
     })
   };

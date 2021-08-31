@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 /* import 'bootstrap/dist/css/bootstrap.min.css' */
 import { Table,Button } from 'react-bootstrap'
 import Barra from './Barra'
 import './Visualizacion.css'
 import Busqueda from './Busqueda'
+import Axios from "axios";
+import axios from 'axios'
 
+/*
 const estudiantes = [
     {
         nombre1: 'camilo',
@@ -47,16 +50,25 @@ const estudiantes = [
         cedula: '1010111222'
     }
 
-]
+]*/
 
-class Visualizacion extends Component {
+function Visualizacion(){
 
-    state = {
-        students: estudiantes
-    }
+    const [studentList, setStudentList]=useState([])
 
-    render() {
-        const { students } = this.state
+    useEffect(()=> {
+        axios.get('http://localhost:3001/Listar/api/get').then((response)=> {
+        setStudentList(response.data)
+        console.log(response.data)
+        })
+    }, [])
+
+    // state = {
+    //     students: estudiantes
+    // }
+
+    //render() {
+        //const { students } = this.state
         return (
             <div>
                 <div className='App-header Up'>
@@ -82,11 +94,11 @@ class Visualizacion extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                        {students.map(est => (
-                            <tr>
-                            <td>{est.nombre1} {est.nombre2}</td>
-                            <td>{est.apellido1} {est.apellido2}</td>
-                            <td>{est.cedula}</td>
+                        {studentList.map((val) => (
+                            <tr key={val.idEstudiante}>
+                            <td>{val.Primer_Nombre} {val.Segundo_Nombre}</td>
+                            <td>{val.Primer_Apellido} {val.Segundo_Apellido}</td>
+                            <td>{val.Numero_Documento}</td>
                             <td><Button variant='primary'>actualizar</Button></td>
                             <td><Button variant='success'>$</Button></td>
                             <td><Button variant='danger'>X</Button></td>
@@ -98,7 +110,7 @@ class Visualizacion extends Component {
                 </div>
             </div>
         )
-    }
+   // }
 }
 //nombre1,nombre2,apellido1,apellido2,dni,correo,telefono,saldo,cedula,estado
 
