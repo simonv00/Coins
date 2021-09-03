@@ -5,6 +5,23 @@ import "./Formulario.css";
 import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
 import Axios from "axios";
 
+const Alerta = ({children}) => {
+
+  const estilo = {
+    backgroundColor: 'pink',
+    borderRadius: '0.2em',
+    border: children? '1px solid darkred':''
+  }
+
+  return(
+  <div style = {estilo}>
+    <p>
+      {children}
+    </p>
+  </div>
+  )
+}
+
 class Formulario extends Component {
   state = {
     nombre1: "",
@@ -17,7 +34,7 @@ class Formulario extends Component {
     id: "",
     monto: 0,
     estado: false,
-    valid: true,
+    error: '',
     validaciones: {
       nombre1: true,
       nombre2: true,
@@ -31,6 +48,18 @@ class Formulario extends Component {
       estado: true,
     },
   };
+
+  //refs
+  nom1 = React.createRef()
+  nom2 = React.createRef()
+  ape1 = React.createRef()
+  ape2 = React.createRef()
+  corr = React.createRef()
+  tID = React.createRef()
+  ID_ref = React.createRef()
+  tel = React.createRef()
+  mon = React.createRef()
+
 // buenas
   actualizar = (event) => {
     console.log(this.state)
@@ -38,6 +67,230 @@ class Formulario extends Component {
       [event.target.name]: event.target.value,
     });
   };
+
+
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const {nombre1,nombre2,apellido1,apellido2,telefono,correo,id,tipoID,monto,estado,} = this.state;
+
+    Axios.post("http://localhost:3001/Registro/api/insert", {
+      Numero_Documento: id,
+      Primer_Nombre: nombre1,
+      Segundo_Nombre: nombre2,
+      Primer_Apellido: apellido1,
+      Segundo_Apellido: apellido2,
+      Celular: telefono,
+      Tipo_Documento: tipoID,
+      Correo: correo,
+      Saldo: monto,
+      Estado: estado,
+    }).then((res) => {
+      const {isNombre1,isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto} = res.data
+
+      this.setState({
+        validaciones: {
+          ...this.validaciones,
+          nombre1: isNombre1,
+          nombre2: isNombre2,
+          apellido1:isApellido1,
+          apellido2:isApellido2,
+          correo:isCorreo,
+          telefono: isTelefono,
+          id:isID,
+          monto: isMonto
+        },
+      });
+      this.displayError()
+    })
+
+  };
+
+  displayError = () => {
+    const {nombre1,nombre2,apellido1,apellido2,telefono,correo,id,monto,estado} = this.state.validaciones;
+    if(!id){
+      this.setState({error: 'tienes un error en tu id'})
+    } 
+    if(!telefono){
+      this.setState({error: 'tienes un error en tu telefono'})
+    } 
+    if(!correo){
+      this.setState({error: 'tienes un error en tu correo'})
+    }
+    if(!apellido2){
+      this.setState({error: 'tienes un error en tu segundo apellido'})
+    } 
+    if(!apellido1){
+      this.setState({error: 'tienes un error en primer apellido'})
+    } 
+    if(!nombre2){
+      this.setState({error: 'tienes un error en tu segundo nombre'})
+    } 
+    if(!nombre1){
+      this.setState({error: 'tienes un error en tu primer nombre'})
+    } 
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <header className="App-Header">
+          <Container>
+            <Form>
+              <Row>
+                <Col>
+                  <Form.Group>
+                    <Form.Label column="sm">
+                      Escribe el primer Nombre{" "}
+                    </Form.Label>
+                    <Form.Control
+                      name="nombre1"
+                      onChange={this.actualizar}
+                      placeholder="Primer Nombre"
+                      ref={this.nom1}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group>
+                    <Form.Label column="sm">El segundo nombre </Form.Label>
+                    <Form.Control
+                      name="nombre2"
+                      onChange={this.actualizar}
+                      placeholder="Segundo Nombre"
+                      ref={this.nom2}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group>
+                    <Form.Label column="sm">
+                      Escribe el primer Apellido{" "}
+                    </Form.Label>
+                    <Form.Control
+                      name="apellido1"
+                      onChange={this.actualizar}
+                      placeholder="Primer Apellido"
+                      ref = {this.ape1}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group>
+                    <Form.Label column="sm">El segundo Apellido </Form.Label>
+                    <Form.Control
+                      name="apellido2"
+                      onChange={this.actualizar}
+                      placeholder="Segundo Apellido"
+                      ref = {this.ape2}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Form.Group>
+                  <Form.Label column="sm"> Correo</Form.Label>
+                  <Form.Control
+                    name="correo"
+                    onChange={this.actualizar}
+                    placeholder=" ejemplo@email.com"
+                    type="email"
+                    ref = {this.corr}
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label column="sm"> Teléfono</Form.Label>
+                  <Form.Control
+                    name="telefono"
+                    onChange={this.actualizar}
+                    placeholder=" Numero telefónico"
+                    type="tel"
+                    ref = {this.tel}
+                  />
+                </Form.Group>
+              </Row>
+              <Row>
+                <Col xs="auto">
+                  <Form.Group>
+                    <Form.Label column="sm"> Tipo de Id</Form.Label>
+                    <Form.Control
+                      name="tipoID"
+                      as="select"
+                      onChange={this.actualizar}
+                      ref = {this.tID}
+                    >
+                      <option value="CC">CC</option>
+                      <option value="TI">TI</option>
+                      <option value="CE">CE</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col xs="auto">
+                  <Form.Group>
+                    <Form.Label column="sm">Identificacion </Form.Label>
+                    <Form.Control
+                      name="id"
+                      onChange={this.actualizar}
+                      placeholder="Identificacion"
+                      ref = {this.ID_ref}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Button
+                /* onSubmit={this.handleSubmit} */
+                onClick={this.handleSubmit}
+                variant="outline-dark"
+                className="Button"
+                type="submit"
+              >
+                Guardar
+              </Button>
+            </Form>
+            <div>
+              <Alerta>{this.state.error}</Alerta>
+            </div>
+            <button onClick={this.handleSubmit}>probar</button>
+          </Container>
+        </header>
+      </div>
+    );
+  }
+}
+
+export default Formulario;
+
+/* const {
+  nombre1,
+  nombre2,
+  apellido1,
+  apellido2,
+  telefono,
+  correo,
+  id,
+  tipoID,
+  monto,
+  estado,
+} = this.state;
+const v = sendStudent(
+  nombre1,
+  nombre2,
+  apellido1,
+  apellido2,
+  telefono,
+  correo,
+  id,
+  tipoID,
+  monto,
+  estado
+);
+this.setState({
+  valid: v,
+}); */
+
+
 
 /*   
         
@@ -85,194 +338,3 @@ class Formulario extends Component {
       },
     });
   }; */
-
-  handleSubmit = (e) => {
-    const {
-      nombre1,
-      nombre2,
-      apellido1,
-      apellido2,
-      telefono,
-      correo,
-      id,
-      tipoID,
-      monto,
-      estado,
-    } = this.state;
-
-    Axios.post("http://localhost:3001/Registro/api/insert", {
-      Numero_Documento: id,
-      Primer_Nombre: nombre1,
-      Segundo_Nombre: nombre2,
-      Primer_Apellido: apellido1,
-      Segundo_Apellido: apellido2,
-      Celular: telefono,
-      Tipo_Documento: tipoID,
-      Correo: correo,
-      Saldo: monto,
-      Estado: estado,
-    }).then((res) => {
-      console.log(res)
-      alert('succesfull insert');
-    })
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-Header">
-          <Container>
-            <Form>
-              <Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label column="sm">
-                      Escribe el primer Nombre{" "}
-                    </Form.Label>
-                    <Form.Control
-                      name="nombre1"
-                      onChange={this.actualizar}
-                      placeholder="Primer Nombre"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group>
-                    <Form.Label column="sm">El segundo nombre </Form.Label>
-                    <Form.Control
-                      name="nombre2"
-                      onChange={this.actualizar}
-                      placeholder="Segundo Nombre"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Form.Group>
-                    <Form.Label column="sm">
-                      Escribe el primer Apellido{" "}
-                    </Form.Label>
-                    <Form.Control
-                      name="apellido1"
-                      onChange={this.actualizar}
-                      placeholder="Primer Apellido"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group>
-                    <Form.Label column="sm">El segundo Apellido </Form.Label>
-                    <Form.Control
-                      name="apellido2"
-                      onChange={this.actualizar}
-                      placeholder="Segundo Apellido"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Form.Group>
-                  <Form.Label column="sm"> Correo</Form.Label>
-                  <Form.Control
-                    name="correo"
-                    onChange={this.actualizar}
-                    placeholder=" ejemplo@email.com"
-                    type="email"
-                  ></Form.Control>
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label column="sm"> Teléfono</Form.Label>
-                  <Form.Control
-                    name="telefono"
-                    onChange={this.actualizar}
-                    placeholder=" Numero telefónico"
-                    type="tel"
-                  />
-                </Form.Group>
-              </Row>
-              <Row>
-                <Col xs="auto">
-                  <Form.Group>
-                    <Form.Label column="sm"> Tipo de Id</Form.Label>
-                    <Form.Control
-                      name="tipoID"
-                      as="select"
-                      onChange={this.actualizar}
-                    >
-                      <option value="CC">CC</option>
-                      <option value="TI">TI</option>
-                      <option value="CE">CE</option>
-                    </Form.Control>
-                  </Form.Group>
-                </Col>
-                <Col xs="auto">
-                  <Form.Group>
-                    <Form.Label column="sm">Identificacion </Form.Label>
-                    <Form.Control
-                      name="id"
-                      onChange={this.actualizar}
-                      placeholder="Identificacion"
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Button
-                /* onSubmit={this.handleSubmit} */
-                onClick={this.handleSubmit}
-                variant="outline-dark"
-                className="Button"
-                type="submit"
-              >
-                Guardar
-              </Button>
-            </Form>
-
-            <button onClick={this.handleSubmit}>probar</button>
-            {!this.state.valid && (
-              <Alert column="sm" variant="danger">
-                <p style={{ fontSize: "14px" }}>
-                  hay un error en algun campo, deben tener en cuenta lo
-                  sguiente: tanto nombres como apellidos deben tener solo
-                  caracteres alfabeticos, el correo debe contener el dominio de
-                  '@eia.edu.co' el telefono debe contener unicamente numeros, el
-                  telefono debe contener entre 7 y 12 caracteres
-                </p>
-              </Alert>
-            )}
-          </Container>
-        </header>
-      </div>
-    );
-  }
-}
-
-export default Formulario;
-
-/* const {
-  nombre1,
-  nombre2,
-  apellido1,
-  apellido2,
-  telefono,
-  correo,
-  id,
-  tipoID,
-  monto,
-  estado,
-} = this.state;
-const v = sendStudent(
-  nombre1,
-  nombre2,
-  apellido1,
-  apellido2,
-  telefono,
-  correo,
-  id,
-  tipoID,
-  monto,
-  estado
-);
-this.setState({
-  valid: v,
-}); */
