@@ -16,7 +16,13 @@ class Busqueda extends Component {
                         aria-label="Example text with button addon"
                         aria-describedby="basic-addon1"
                     />
-                    <Button variant="outline-primary" id="button-addon1">
+                    <Button 
+                        variant="outline-primary" 
+                        id="button-addon1"
+                        onClick={this.handleSubmit}
+                        className="Button"
+                        type="submit"
+                    >
                         Buscar
                     </Button>
                 </InputGroup>

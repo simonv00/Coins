@@ -60,7 +60,6 @@ class Formulario extends Component {
   tel = React.createRef()
   mon = React.createRef()
 
-// buenas
   actualizar = (event) => {
     console.log(this.state)
     this.setState({
@@ -86,8 +85,8 @@ class Formulario extends Component {
       Saldo: monto,
       Estado: estado,
     }).then((res) => {
-      const {isNombre1,isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto} = res.data
-
+      const {isNombre1,isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto,ItSaved} = res.data
+      console.log(ItSaved)
       this.setState({
         validaciones: {
           ...this.validaciones,
@@ -129,6 +128,9 @@ class Formulario extends Component {
     if(!nombre1){
       this.setState({error: 'tienes un error en tu primer nombre'})
     } 
+    else{
+      window.location.reload()
+    }
   }
   
   render() {
