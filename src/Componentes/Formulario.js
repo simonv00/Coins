@@ -142,6 +142,7 @@ class Formulario extends Component {
     }
   };
 
+  
   render() {
     return (
       <div className="App">
@@ -260,7 +261,7 @@ class Formulario extends Component {
                 Guardar
               </Button>
             </Form>
-            <div>{/* <Alerta>{this.state.error}</Alerta> */}</div>
+            <div><Alerta>{this.state.error}</Alerta></div>
             <button onClick={this.handleSubmit}>probar</button>
           </Container>
         </header>
