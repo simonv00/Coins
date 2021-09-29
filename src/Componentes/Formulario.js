@@ -5,22 +5,19 @@ import "./Formulario.css";
 import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
 import Axios from "axios";
 
-const Alerta = ({children}) => {
-
+const Alerta = ({ children }) => {
   const estilo = {
-    backgroundColor: 'pink',
-    borderRadius: '0.2em',
-    border: children? '1px solid darkred':''
-  }
+    backgroundColor: "pink",
+    borderRadius: "0.2em",
+    border: children ? "1px solid darkred" : "",
+  };
 
-  return(
-  <div style = {estilo}>
-    <p>
-      {children}
-    </p>
-  </div>
-  )
-}
+  return (
+    <div style={estilo}>
+      <p>{children}</p>
+    </div>
+  );
+};
 
 class Formulario extends Component {
   state = {
@@ -34,7 +31,7 @@ class Formulario extends Component {
     id: "",
     monto: 0,
     estado: false,
-    error: '',
+    error: "",
     validaciones: {
       nombre1: true,
       nombre2: true,
@@ -50,28 +47,37 @@ class Formulario extends Component {
   };
 
   //refs
-  nom1 = React.createRef()
-  nom2 = React.createRef()
-  ape1 = React.createRef()
-  ape2 = React.createRef()
-  corr = React.createRef()
-  tID = React.createRef()
-  ID_ref = React.createRef()
-  tel = React.createRef()
-  mon = React.createRef()
+  nom1 = React.createRef();
+  nom2 = React.createRef();
+  ape1 = React.createRef();
+  ape2 = React.createRef();
+  corr = React.createRef();
+  tID = React.createRef();
+  ID_ref = React.createRef();
+  tel = React.createRef();
+  mon = React.createRef();
 
   actualizar = (event) => {
-    console.log(this.state)
+    console.log(this.state);
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
-
-
   handleSubmit = (e) => {
-    e.preventDefault()
-    const {nombre1,nombre2,apellido1,apellido2,telefono,correo,id,tipoID,monto,estado,} = this.state;
+    e.preventDefault();
+    const {
+      nombre1,
+      nombre2,
+      apellido1,
+      apellido2,
+      telefono,
+      correo,
+      id,
+      tipoID,
+      monto,
+      estado,
+    } = this.state;
 
     Axios.post("http://localhost:3001/Registro/api/insert", {
       Numero_Documento: id,
@@ -85,54 +91,57 @@ class Formulario extends Component {
       Saldo: monto,
       Estado: estado,
     }).then((res) => {
-      const {isNombre1,isNombre2,isApellido1,isApellido2,isCorreo,isTelefono,isID,isMonto,ItSaved} = res.data
-      console.log(ItSaved)
+      const {
+        isNombre1,
+        isNombre2,
+        isApellido1,
+        isApellido2,
+        isCorreo,
+        isTelefono,
+        isID,
+        isMonto,
+        ItSaved,
+      } = res.data;
+      console.log(ItSaved);
       this.setState({
         validaciones: {
           ...this.validaciones,
           nombre1: isNombre1,
           nombre2: isNombre2,
-          apellido1:isApellido1,
-          apellido2:isApellido2,
-          correo:isCorreo,
+          apellido1: isApellido1,
+          apellido2: isApellido2,
+          correo: isCorreo,
           telefono: isTelefono,
-          id:isID,
-          monto: isMonto
+          id: isID,
+          monto: isMonto,
         },
       });
-      this.displayError()
-    })
-
+      this.displayError();
+    });
   };
 
   displayError = () => {
-    const {nombre1,nombre2,apellido1,apellido2,telefono,correo,id,monto,estado} = this.state.validaciones;
-    if(!id){
-      this.setState({error: 'tienes un error en tu id'})
-    } 
-    if(!telefono){
-      this.setState({error: 'tienes un error en tu telefono'})
-    } 
-    if(!correo){
-      this.setState({error: 'tienes un error en tu correo'})
+    const { nombre1, nombre2, apellido1, apellido2, telefono, correo, id } =
+      this.state.validaciones;
+    if (!id) {
+      this.setState({ error: "tienes un error en tu id" });
+    } else if (!telefono) {
+      this.setState({ error: "tienes un error en tu telefono" });
+    } else if (!correo) {
+      this.setState({ error: "tienes un error en tu correo" });
+    } else if (!apellido2) {
+      this.setState({ error: "tienes un error en tu segundo apellido" });
+    } else if (!apellido1) {
+      this.setState({ error: "tienes un error en primer apellido" });
+    } else if (!nombre2) {
+      this.setState({ error: "tienes un error en tu segundo nombre" });
+    } else if (!nombre1) {
+      this.setState({ error: "tienes un error en tu primer nombre" });
+    } else {
+      window.location.reload();
     }
-    if(!apellido2){
-      this.setState({error: 'tienes un error en tu segundo apellido'})
-    } 
-    if(!apellido1){
-      this.setState({error: 'tienes un error en primer apellido'})
-    } 
-    if(!nombre2){
-      this.setState({error: 'tienes un error en tu segundo nombre'})
-    } 
-    if(!nombre1){
-      this.setState({error: 'tienes un error en tu primer nombre'})
-    } 
-    else{
-      window.location.reload()
-    }
-  }
-  
+  };
+
   render() {
     return (
       <div className="App">
@@ -175,7 +184,7 @@ class Formulario extends Component {
                       name="apellido1"
                       onChange={this.actualizar}
                       placeholder="Primer Apellido"
-                      ref = {this.ape1}
+                      ref={this.ape1}
                     />
                   </Form.Group>
                 </Col>
@@ -186,7 +195,7 @@ class Formulario extends Component {
                       name="apellido2"
                       onChange={this.actualizar}
                       placeholder="Segundo Apellido"
-                      ref = {this.ape2}
+                      ref={this.ape2}
                     />
                   </Form.Group>
                 </Col>
@@ -199,7 +208,7 @@ class Formulario extends Component {
                     onChange={this.actualizar}
                     placeholder=" ejemplo@email.com"
                     type="email"
-                    ref = {this.corr}
+                    ref={this.corr}
                   ></Form.Control>
                 </Form.Group>
                 <Form.Group>
@@ -209,7 +218,7 @@ class Formulario extends Component {
                     onChange={this.actualizar}
                     placeholder=" Numero telefónico"
                     type="tel"
-                    ref = {this.tel}
+                    ref={this.tel}
                   />
                 </Form.Group>
               </Row>
@@ -221,7 +230,7 @@ class Formulario extends Component {
                       name="tipoID"
                       as="select"
                       onChange={this.actualizar}
-                      ref = {this.tID}
+                      ref={this.tID}
                     >
                       <option value="CC">CC</option>
                       <option value="TI">TI</option>
@@ -236,7 +245,7 @@ class Formulario extends Component {
                       name="id"
                       onChange={this.actualizar}
                       placeholder="Identificacion"
-                      ref = {this.ID_ref}
+                      ref={this.ID_ref}
                     />
                   </Form.Group>
                 </Col>
@@ -251,9 +260,7 @@ class Formulario extends Component {
                 Guardar
               </Button>
             </Form>
-            <div>
-              <Alerta>{this.state.error}</Alerta>
-            </div>
+            <div>{/* <Alerta>{this.state.error}</Alerta> */}</div>
             <button onClick={this.handleSubmit}>probar</button>
           </Container>
         </header>
@@ -291,8 +298,6 @@ const v = sendStudent(
 this.setState({
   valid: v,
 }); */
-
-
 
 /*   
         
