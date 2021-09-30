@@ -1,56 +1,10 @@
-import React, { Component, useEffect, useState } from 'react'
-/* import 'bootstrap/dist/css/bootstrap.min.css' */
+import React, { useEffect, useState } from 'react'
 import { Table,Button } from 'react-bootstrap'
-import Barra from './Barra'
 import './Visualizacion.css'
 import Busqueda from './Busqueda'
-import Axios from "axios";
 import axios from 'axios'
 
-/*
-const estudiantes = [
-    {
-        nombre1: 'camilo',
-        nombre2: '',
-        apellido1: 'mafioly',
-        apellido2: 'yacamán',
-        saldo: 500000,
-        cedula: '1020831887'
-    },
-    {
-        nombre1: 'pablo',
-        nombre2: '',
-        apellido1: 'isaza',
-        apellido2: 'gómez',
-        saldo: 5000,
-        cedula: '1037665377'
-    },
-    {
-        nombre1: 'cristina',
-        nombre2: '',
-        apellido1: 'arango',
-        apellido2: 'escobar',
-        saldo: 100000,
-        cedula: '1020831887'
-    },
-    {
-        nombre1: 'Simon',
-        nombre2: '',
-        apellido1: 'valencia',
-        apellido2: 'ochoa',
-        saldo: -1000,
-        cedula: '1010111222'
-    },
-    {
-        nombre1: 'Andres',
-        nombre2: 'esteban',
-        apellido1: 'cardona',
-        apellido2: 'no se',
-        saldo: -1000,
-        cedula: '1010111222'
-    }
 
-]*/
 
 function Visualizacion(){
 

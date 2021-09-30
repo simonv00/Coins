@@ -2,23 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import "./Formulario.css";
 /* import 'bootstrap/dist/css/bootstrap.min.css' */
-import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
+import { Container, Row, Col, Button, Form} from "react-bootstrap";
 import Axios from "axios";
+import ErrorMessage from "./ErrorMessage";
 
-const Alerta = ({ children }) => {
-  const estilo = {
-    backgroundColor: "pink",
-    borderRadius: "0.2em",
-    border: children ? "1px solid darkred" : "",
-  };
-
-  return (
-    <div style={estilo}>
-      <p>{children}</p>
-    </div>
-  );
-};
-
+// este componente es el que contiene el formulario de estudiantes, tiene cada una de las variables que se pasan al Backend
+// y ademas tiene un objeto de validacion, para sacar mensajes de error, en caso de que haya error en un formulario
 class Formulario extends Component {
   state = {
     nombre1: "",
@@ -125,9 +114,7 @@ class Formulario extends Component {
   displayError = () => {
     const { nombre1, nombre2, apellido1, apellido2, telefono, correo, id, ItSaved } =
       this.state.validaciones;
-    if(!ItSaved){
-      this.setState({ error: "este id esta repedito, prueba otro" });
-    }else if (!id) {
+    if (!id) {
       this.setState({ error: "tienes un error en tu id" });
     } else if (!telefono) {
       this.setState({ error: "tienes un error en tu telefono" });
@@ -141,7 +128,9 @@ class Formulario extends Component {
       this.setState({ error: "tienes un error en tu segundo nombre" });
     } else if (!nombre1) {
       this.setState({ error: "tienes un error en tu primer nombre" });
-    } else {
+    } else if(!ItSaved){
+      this.setState({ error: "El id o el esta repedito, prueba otro" });
+    }else {
       window.location.reload();
     }
   };
@@ -265,8 +254,7 @@ class Formulario extends Component {
                 Guardar
               </Button>
             </Form>
-            <div><Alerta>{this.state.error}</Alerta></div>
-            <button onClick={this.handleSubmit}>probar</button>
+            <div><ErrorMessage>{this.state.error}</ErrorMessage></div>
           </Container>
         </header>
       </div>
@@ -275,5 +263,3 @@ class Formulario extends Component {
 }
 
 export default Formulario;
-
-

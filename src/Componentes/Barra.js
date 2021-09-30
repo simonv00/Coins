@@ -3,7 +3,7 @@ import { Navbar, Container, Nav, Image } from 'react-bootstrap'
 import { BrowserRouter as Router,Link } from 'react-router-dom'
 import './Barra.css'
 
-
+// barra de navegacion
 class Barra extends Component {
     render() {
         return (

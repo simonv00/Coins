@@ -88,3 +88,12 @@ td{
   color: #004e59;
   
 }
+
+.error {
+  margin: 0.5em;
+  color: darkred;
+  border-radius: 0.3em;
+  background-color: lightpink;
+  flex-direction: row;
+  text-align: center;
+}

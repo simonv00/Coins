@@ -10,6 +10,7 @@ import Registro from './Registro'
 import Visualizacion from '../Componentes/Visualizacion'
 import DefaultLayout from './Layout/Default'
 
+//Aplicacion principal
 export default class App extends Component {
     render() {
         return (

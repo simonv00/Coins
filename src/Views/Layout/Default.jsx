@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import Barra from '../../Componentes/Barra';
 
+// esto es lo que se renderiza en todas las paginas por defecto
 function Default ({children})  {
         return (
             <div>
