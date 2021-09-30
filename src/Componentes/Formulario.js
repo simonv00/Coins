@@ -43,6 +43,7 @@ class Formulario extends Component {
       id: true,
       monto: true,
       estado: true,
+      ItSaved:true
     },
   };
 
@@ -114,6 +115,7 @@ class Formulario extends Component {
           telefono: isTelefono,
           id: isID,
           monto: isMonto,
+          ItSaved:ItSaved
         },
       });
       this.displayError();
@@ -121,9 +123,11 @@ class Formulario extends Component {
   };
 
   displayError = () => {
-    const { nombre1, nombre2, apellido1, apellido2, telefono, correo, id } =
+    const { nombre1, nombre2, apellido1, apellido2, telefono, correo, id, ItSaved } =
       this.state.validaciones;
-    if (!id) {
+    if(!ItSaved){
+      this.setState({ error: "este id esta repedito, prueba otro" });
+    }else if (!id) {
       this.setState({ error: "tienes un error en tu id" });
     } else if (!telefono) {
       this.setState({ error: "tienes un error en tu telefono" });
@@ -272,77 +276,4 @@ class Formulario extends Component {
 
 export default Formulario;
 
-/* const {
-  nombre1,
-  nombre2,
-  apellido1,
-  apellido2,
-  telefono,
-  correo,
-  id,
-  tipoID,
-  monto,
-  estado,
-} = this.state;
-const v = sendStudent(
-  nombre1,
-  nombre2,
-  apellido1,
-  apellido2,
-  telefono,
-  correo,
-  id,
-  tipoID,
-  monto,
-  estado
-);
-this.setState({
-  valid: v,
-}); */
 
-/*   
-        
-  validateAlpha = (event) => {
-    this.setState({
-      validaciones: {
-        ...this.validaciones,
-        [event.target.name]: validate.validateAlpha(event.target.value),
-      },
-    });
-  };
-
-  validateAlpha2 = (event) => {
-    this.setState({
-      validaciones: {
-        ...this.validaciones,
-        [event.target.name]: validate.validateAlpha2(event.target.value),
-      },
-    });
-  };
-
-  validateNumber = (event) => {
-    this.setState({
-      validaciones: {
-        ...this.validaciones,
-        [event.target.name]: validate.validateNumber(event.target.value),
-      },
-    });
-  };
-
-  validateMail = (event) => {
-    this.setState({
-      validaciones: {
-        ...this.validaciones,
-        [event.target.name]: validate.validateMail(event.target.value),
-      },
-    });
-  };
-
-  validateId = (event) => {
-    this.setState({
-      validaciones: {
-        ...this.validaciones,
-        [event.target.name]: validate.validateId(event.target.value),
-      },
-    });
-  }; */

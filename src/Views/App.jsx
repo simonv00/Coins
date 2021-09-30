@@ -17,8 +17,8 @@ export default class App extends Component {
             <div>
                 <Router>
                     <Switch>
-                        <DefaultLayout path='/Registro' component={Registro}/>
-                        <DefaultLayout path='/Visualizacion' component={Visualizacion}/>
+                        <DefaultLayout path='/' exact component={Registro}/>
+                        <DefaultLayout path='/Visualizacion' exact component={Visualizacion}/>
                     </Switch>
                 </Router>
             </div>

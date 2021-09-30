@@ -19,7 +19,7 @@ class Barra extends Component {
                             <Link to='/Visualizacion' className='Link' >
                                     Buscar
                             </Link>
-                            <Link to='/Registro' className='Link' >
+                            <Link to='/' className='Link' >
                                 Agregar estudiante
                             </Link>
                         </Nav>
