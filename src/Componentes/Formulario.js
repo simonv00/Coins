@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import "./Formulario.css";
 /* import 'bootstrap/dist/css/bootstrap.min.css' */
-import { Container, Row, Col, Button, Form} from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Axios from "axios";
 import ErrorMessage from "./ErrorMessage";
 
@@ -10,6 +10,7 @@ import ErrorMessage from "./ErrorMessage";
 // y ademas tiene un objeto de validacion, para sacar mensajes de error, en caso de que haya error en un formulario
 class Formulario extends Component {
   state = {
+    displayStudent: false,
     nombre1: "",
     nombre2: "",
     apellido1: "",
@@ -20,6 +21,8 @@ class Formulario extends Component {
     id: "",
     monto: 0,
     estado: false,
+    esEstudiante: false,
+    carrera: "",
     error: "",
     validaciones: {
       nombre1: true,
@@ -32,9 +35,12 @@ class Formulario extends Component {
       id: true,
       monto: true,
       estado: true,
-      ItSaved:true
+      esEstudiante: true,
+      carrera: true,
+      ItSaved: true,
     },
   };
+
 
   //refs
   nom1 = React.createRef();
@@ -46,6 +52,15 @@ class Formulario extends Component {
   ID_ref = React.createRef();
   tel = React.createRef();
   mon = React.createRef();
+  checkStudent = React.createRef();
+
+  componentDidUpdate = (prevProps, prevState) =>{
+    if(prevState.esEstudiante !== this.state.esEstudiante){
+      this.setState({
+        esEstudiante: this.state.esEstudiante
+      })
+    }
+  }
 
   actualizar = (event) => {
     console.log(this.state);
@@ -67,6 +82,8 @@ class Formulario extends Component {
       tipoID,
       monto,
       estado,
+      esEstudiante,
+      carrera,
     } = this.state;
 
     Axios.post("http://localhost:3001/Registro/api/insert", {
@@ -80,6 +97,8 @@ class Formulario extends Component {
       Correo: correo,
       Saldo: monto,
       Estado: estado,
+      esEstudiante: esEstudiante,
+      carrera: carrera,
     }).then((res) => {
       const {
         isNombre1,
@@ -90,6 +109,8 @@ class Formulario extends Component {
         isTelefono,
         isID,
         isMonto,
+        esEstudiante,
+        isCarrera,
         ItSaved,
       } = res.data;
       console.log(ItSaved);
@@ -104,7 +125,9 @@ class Formulario extends Component {
           telefono: isTelefono,
           id: isID,
           monto: isMonto,
-          ItSaved:ItSaved
+          ItSaved: ItSaved,
+          esEstudiante: esEstudiante,
+          carrera: isCarrera,
         },
       });
       this.displayError();
@@ -112,8 +135,18 @@ class Formulario extends Component {
   };
 
   displayError = () => {
-    const { nombre1, nombre2, apellido1, apellido2, telefono, correo, id, ItSaved } =
-      this.state.validaciones;
+    const {
+      nombre1,
+      nombre2,
+      apellido1,
+      apellido2,
+      telefono,
+      correo,
+      id,
+      ItSaved,
+      esEstudiante,
+      carrera,
+    } = this.state.validaciones;
     if (!id) {
       this.setState({ error: "tienes un error en tu id" });
     } else if (!telefono) {
@@ -128,15 +161,17 @@ class Formulario extends Component {
       this.setState({ error: "tienes un error en tu segundo nombre" });
     } else if (!nombre1) {
       this.setState({ error: "tienes un error en tu primer nombre" });
-    } else if(!ItSaved){
+    } else if (!carrera) {
+      this.setState({ error: "tienes un error en el campo de carrera" });
+    }else if (!ItSaved) {
       this.setState({ error: "El id o el esta repedito, prueba otro" });
-    }else {
+    }  else {
       window.location.reload();
     }
   };
 
-  
   render() {
+    var{esEstudiante} = this.state
     return (
       <div className="App">
         <header className="App-Header">
@@ -149,6 +184,7 @@ class Formulario extends Component {
                       Escribe el primer Nombre{" "}
                     </Form.Label>
                     <Form.Control
+                      id='nombre1'
                       name="nombre1"
                       onChange={this.actualizar}
                       placeholder="Primer Nombre"
@@ -160,6 +196,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm">El segundo nombre </Form.Label>
                     <Form.Control
+                      id='nombre2'
                       name="nombre2"
                       onChange={this.actualizar}
                       placeholder="Segundo Nombre"
@@ -175,6 +212,7 @@ class Formulario extends Component {
                       Escribe el primer Apellido{" "}
                     </Form.Label>
                     <Form.Control
+                      id='apellido1'
                       name="apellido1"
                       onChange={this.actualizar}
                       placeholder="Primer Apellido"
@@ -186,6 +224,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm">El segundo Apellido </Form.Label>
                     <Form.Control
+                      id='apellido2'
                       name="apellido2"
                       onChange={this.actualizar}
                       placeholder="Segundo Apellido"
@@ -198,6 +237,7 @@ class Formulario extends Component {
                 <Form.Group>
                   <Form.Label column="sm"> Correo</Form.Label>
                   <Form.Control
+                  id='correo'
                     name="correo"
                     onChange={this.actualizar}
                     placeholder=" ejemplo@email.com"
@@ -208,6 +248,7 @@ class Formulario extends Component {
                 <Form.Group>
                   <Form.Label column="sm"> Teléfono</Form.Label>
                   <Form.Control
+                  id='telefono'
                     name="telefono"
                     onChange={this.actualizar}
                     placeholder=" Numero telefónico"
@@ -221,6 +262,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm"> Tipo de Id</Form.Label>
                     <Form.Control
+                    id='tipoID'
                       name="tipoID"
                       as="select"
                       onChange={this.actualizar}
@@ -236,6 +278,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm">Identificacion </Form.Label>
                     <Form.Control
+                    id='id'
                       name="id"
                       onChange={this.actualizar}
                       placeholder="Identificacion"
@@ -244,17 +287,48 @@ class Formulario extends Component {
                   </Form.Group>
                 </Col>
               </Row>
+              
+              <div className='div-checkbox'>
+                  <label>Es estudiante actual</label>
+                  <input ref={this.checkStudent}
+                  type="checkbox"
+                  name="checkStudent"
+                  id="checkStudent"
+                  className="checkbox"
+                  onChange={(e)=>{this.setState({esEstudiante:e.target.checked})}} />
+              </div>
+              {esEstudiante && (
+
+                <div>
+                <Form.Group>
+                    <Form.Label column="sm">
+                      Escribe la carrera del estudiante{" "}
+                    </Form.Label>
+                    <Form.Control
+                    id='carrera'
+                      name="carrera"
+                      onChange={this.actualizar}
+                      placeholder="Carrera"
+                      ref={this.checkStudent}
+                    />
+                  </Form.Group>
+                </div>
+              )}
+                
               <Button
                 /* onSubmit={this.handleSubmit} */
                 onClick={this.handleSubmit}
                 variant="outline-dark"
                 className="Button"
                 type="submit"
+                id='boton'
               >
                 Guardar
               </Button>
             </Form>
-            <div><ErrorMessage>{this.state.error}</ErrorMessage></div>
+            <div>
+              <ErrorMessage id='Error'>{this.state.error}</ErrorMessage>
+            </div>
           </Container>
         </header>
       </div>

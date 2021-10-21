@@ -1,3 +1,18 @@
 .Formulario{
     padding: 1em
 }
+
+.checkbox{
+    margin: 1em;
+    height: 0.8em;
+    width: 0.8em;
+}
+
+.div-checkbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: start;
+
+}
