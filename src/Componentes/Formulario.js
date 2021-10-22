@@ -164,7 +164,7 @@ class Formulario extends Component {
     } else if (!carrera) {
       this.setState({ error: "tienes un error en el campo de carrera" });
     }else if (!ItSaved) {
-      this.setState({ error: "El id o el esta repedito, prueba otro" });
+      this.setState({ error: "El id o el correo esta repedito, prueba otro" });
     }  else {
       window.location.reload();
     }
@@ -326,8 +326,8 @@ class Formulario extends Component {
                 Guardar
               </Button>
             </Form>
-            <div>
-              <ErrorMessage id='Error'>{this.state.error}</ErrorMessage>
+            <div id='error'>
+              <ErrorMessage id='error2'>{this.state.error}</ErrorMessage>
             </div>
           </Container>
         </header>
