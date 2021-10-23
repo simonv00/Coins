@@ -41,7 +41,6 @@ class Formulario extends Component {
     },
   };
 
-
   //refs
   nom1 = React.createRef();
   nom2 = React.createRef();
@@ -54,13 +53,13 @@ class Formulario extends Component {
   mon = React.createRef();
   checkStudent = React.createRef();
 
-  componentDidUpdate = (prevProps, prevState) =>{
-    if(prevState.esEstudiante !== this.state.esEstudiante){
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.esEstudiante !== this.state.esEstudiante) {
       this.setState({
-        esEstudiante: this.state.esEstudiante
-      })
+        esEstudiante: this.state.esEstudiante,
+      });
     }
-  }
+  };
 
   actualizar = (event) => {
     console.log(this.state);
@@ -147,31 +146,31 @@ class Formulario extends Component {
       esEstudiante,
       carrera,
     } = this.state.validaciones;
-    if (!id) {
-      this.setState({ error: "tienes un error en tu id" });
-    } else if (!telefono) {
-      this.setState({ error: "tienes un error en tu telefono" });
-    } else if (!correo) {
-      this.setState({ error: "tienes un error en tu correo" });
-    } else if (!apellido2) {
-      this.setState({ error: "tienes un error en tu segundo apellido" });
-    } else if (!apellido1) {
-      this.setState({ error: "tienes un error en primer apellido" });
+    if (!nombre1) {
+      this.setState({ error: "tienes un error en tu primer nombre" });
     } else if (!nombre2) {
       this.setState({ error: "tienes un error en tu segundo nombre" });
-    } else if (!nombre1) {
-      this.setState({ error: "tienes un error en tu primer nombre" });
+    } else if (!apellido1) {
+      this.setState({ error: "tienes un error en primer apellido" });
+    } else if (!apellido2) {
+      this.setState({ error: "tienes un error en tu segundo apellido" });
+    } else if (!correo) {
+      this.setState({ error: "tienes un error en tu correo" });
+    } else if (!telefono) {
+      this.setState({ error: "tienes un error en tu telefono" });
+    } else if (!id) {
+      this.setState({ error: "tienes un error en tu id" });
     } else if (!carrera) {
       this.setState({ error: "tienes un error en el campo de carrera" });
-    }else if (!ItSaved) {
+    } else if (!ItSaved) {
       this.setState({ error: "El id o el correo esta repedito, prueba otro" });
-    }  else {
+    } else {
       window.location.reload();
     }
   };
 
   render() {
-    var{esEstudiante} = this.state
+    var { esEstudiante } = this.state;
     return (
       <div className="App">
         <header className="App-Header">
@@ -184,7 +183,7 @@ class Formulario extends Component {
                       Escribe el primer Nombre{" "}
                     </Form.Label>
                     <Form.Control
-                      id='nombre1'
+                      id="nombre1"
                       name="nombre1"
                       onChange={this.actualizar}
                       placeholder="Primer Nombre"
@@ -196,7 +195,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm">El segundo nombre </Form.Label>
                     <Form.Control
-                      id='nombre2'
+                      id="nombre2"
                       name="nombre2"
                       onChange={this.actualizar}
                       placeholder="Segundo Nombre"
@@ -212,7 +211,7 @@ class Formulario extends Component {
                       Escribe el primer Apellido{" "}
                     </Form.Label>
                     <Form.Control
-                      id='apellido1'
+                      id="apellido1"
                       name="apellido1"
                       onChange={this.actualizar}
                       placeholder="Primer Apellido"
@@ -224,7 +223,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm">El segundo Apellido </Form.Label>
                     <Form.Control
-                      id='apellido2'
+                      id="apellido2"
                       name="apellido2"
                       onChange={this.actualizar}
                       placeholder="Segundo Apellido"
@@ -237,7 +236,7 @@ class Formulario extends Component {
                 <Form.Group>
                   <Form.Label column="sm"> Correo</Form.Label>
                   <Form.Control
-                  id='correo'
+                    id="correo"
                     name="correo"
                     onChange={this.actualizar}
                     placeholder=" ejemplo@email.com"
@@ -248,7 +247,7 @@ class Formulario extends Component {
                 <Form.Group>
                   <Form.Label column="sm"> Teléfono</Form.Label>
                   <Form.Control
-                  id='telefono'
+                    id="telefono"
                     name="telefono"
                     onChange={this.actualizar}
                     placeholder=" Numero telefónico"
@@ -262,7 +261,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm"> Tipo de Id</Form.Label>
                     <Form.Control
-                    id='tipoID'
+                      id="tipoID"
                       name="tipoID"
                       as="select"
                       onChange={this.actualizar}
@@ -278,7 +277,7 @@ class Formulario extends Component {
                   <Form.Group>
                     <Form.Label column="sm">Identificacion </Form.Label>
                     <Form.Control
-                    id='id'
+                      id="id"
                       name="id"
                       onChange={this.actualizar}
                       placeholder="Identificacion"
@@ -287,25 +286,28 @@ class Formulario extends Component {
                   </Form.Group>
                 </Col>
               </Row>
-              
-              <div className='div-checkbox'>
-                  <label>Es estudiante actual</label>
-                  <input ref={this.checkStudent}
+
+              <div className="div-checkbox">
+                <label>Es estudiante actual</label>
+                <input
+                  ref={this.checkStudent}
                   type="checkbox"
                   name="checkStudent"
                   id="checkStudent"
                   className="checkbox"
-                  onChange={(e)=>{this.setState({esEstudiante:e.target.checked})}} />
+                  onChange={(e) => {
+                    this.setState({ esEstudiante: e.target.checked });
+                  }}
+                />
               </div>
               {esEstudiante && (
-
                 <div>
-                <Form.Group>
+                  <Form.Group>
                     <Form.Label column="sm">
                       Escribe la carrera del estudiante{" "}
                     </Form.Label>
                     <Form.Control
-                    id='carrera'
+                      id="carrera"
                       name="carrera"
                       onChange={this.actualizar}
                       placeholder="Carrera"
@@ -314,20 +316,20 @@ class Formulario extends Component {
                   </Form.Group>
                 </div>
               )}
-                
+
               <Button
                 /* onSubmit={this.handleSubmit} */
                 onClick={this.handleSubmit}
                 variant="outline-dark"
                 className="Button"
                 type="submit"
-                id='boton'
+                id="boton"
               >
                 Guardar
               </Button>
             </Form>
-            <div id='error'>
-              <ErrorMessage id='error2'>{this.state.error}</ErrorMessage>
+            <div id="error3">
+              <ErrorMessage id="error2">{this.state.error}</ErrorMessage>
             </div>
           </Container>
         </header>

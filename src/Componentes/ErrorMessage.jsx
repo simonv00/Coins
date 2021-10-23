@@ -3,7 +3,7 @@ import './App.css'
 const ErrorMessage = ({ children }) => {
     return (
       <div className="error">
-        <p>{children}</p>
+        <p id='error'>{children}</p>
       </div>
     );
   };
