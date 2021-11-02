@@ -22,6 +22,9 @@ class Barra extends Component {
                             <Link to='/' className='Link' >
                                 Agregar estudiante
                             </Link>
+                            <Link to='/Monto' className='Link' >
+                                Modificar monto
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
