@@ -11,7 +11,7 @@ function Visualizacion(){
     const [studentList, setStudentList]=useState([])
 
     useEffect(()=> {
-        axios.get('http://localhost:3001/Listar/api/get').then((response)=> {
+        axios.get('https://coins-implementacion-software.herokuapp.com/Listar/api/get').then((response)=> {
         setStudentList(response.data)
         console.log(response.data)
         })
