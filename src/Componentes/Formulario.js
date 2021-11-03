@@ -6,12 +6,6 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Axios from "axios";
 import ErrorMessage from "./ErrorMessage";
 
-import express from "express"
-import cors from "cors"
-
-const app = express()
-
-app.use(cors())
 
 // este componente es el que contiene el formulario de estudiantes, tiene cada una de las variables que se pasan al Backend
 // y ademas tiene un objeto de validacion, para sacar mensajes de error, en caso de que haya error en un formulario
