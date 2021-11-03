@@ -85,7 +85,7 @@ class Formulario extends Component {
       carrera,
     } = this.state;
 
-    Axios.post("http://localhost:3001/Registro/api/insert", {
+    Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/insert", {
       Numero_Documento: id,
       Primer_Nombre: nombre1,
       Segundo_Nombre: nombre2,
