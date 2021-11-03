@@ -99,7 +99,12 @@ class Formulario extends Component {
       Estado: estado,
       esEstudiante: esEstudiante,
       carrera: carrera,
-    }).then((res) => {
+    }, {
+      headers: {
+             "Access-Control-Allow-Origin": "*",
+             "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+             "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+           }).then((res) => {
       const {
         isNombre1,
         isNombre2,
