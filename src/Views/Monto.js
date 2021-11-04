@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ModMonto from '../Componentes/ModMonto'
-import Barra from '../Componentes/Barra'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class Monto extends Component {
