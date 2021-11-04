@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect
+    Switch
 } from "react-router-dom";
 import Registro from './Registro'
 import Visualizacion from '../Componentes/Visualizacion'

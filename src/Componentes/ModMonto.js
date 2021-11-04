@@ -42,7 +42,7 @@ class ModMonto extends Component {
       monto,
     } = this.state;
 
-    Axios.post("http://localhost:3001/Registro/api/changeMonto", {
+    Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/changeMonto", {
       Numero_Documento: id,
       Tipo_Documento: tipoID,
       Saldo: monto,

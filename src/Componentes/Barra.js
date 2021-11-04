@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Navbar, Container, Nav, Image } from 'react-bootstrap'
-import { BrowserRouter as Router,Link } from 'react-router-dom'
+import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import './Barra.css'
 
 // barra de navegacion

@@ -6,6 +6,7 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import Axios from "axios";
 import ErrorMessage from "./ErrorMessage";
 
+
 // este componente es el que contiene el formulario de estudiantes, tiene cada una de las variables que se pasan al Backend
 // y ademas tiene un objeto de validacion, para sacar mensajes de error, en caso de que haya error en un formulario
 class Formulario extends Component {
@@ -85,7 +86,7 @@ class Formulario extends Component {
       carrera,
     } = this.state;
 
-    Axios.post("http://localhost:3001/Registro/api/insert", {
+    Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/insert", {
       Numero_Documento: id,
       Primer_Nombre: nombre1,
       Segundo_Nombre: nombre2,
@@ -98,7 +99,12 @@ class Formulario extends Component {
       Estado: estado,
       esEstudiante: esEstudiante,
       carrera: carrera,
-    }).then((res) => {
+    }, {
+      headers: {
+             "Access-Control-Allow-Origin": "*",
+             "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+             "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+           }}).then((res) => {
       const {
         isNombre1,
         isNombre2,
@@ -143,7 +149,6 @@ class Formulario extends Component {
       correo,
       id,
       ItSaved,
-      esEstudiante,
       carrera,
     } = this.state.validaciones;
     if (!nombre1) {
