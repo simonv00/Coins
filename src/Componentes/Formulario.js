@@ -149,7 +149,6 @@ class Formulario extends Component {
       correo,
       id,
       ItSaved,
-      esEstudiante,
       carrera,
     } = this.state.validaciones;
     if (!nombre1) {
