@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Formulario from '../Componentes/Formulario'
-import Barra from '../Componentes/Barra'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class Registro extends Component {
