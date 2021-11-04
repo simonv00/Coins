@@ -4,7 +4,7 @@ name: CI2
 on: 
   push:
     branches:    
-      - Produccion 
+      - Production 
 
 jobs:
   build:
@@ -26,4 +26,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-    - run: git push heroku HEAD:Produccion -f
+    - run: git push heroku HEAD:Production -f
