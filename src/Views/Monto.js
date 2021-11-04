@@ -7,7 +7,7 @@ class Monto extends Component {
         return (
             <div >
                 <div className='App-header'>
-                    <h1> Cambiar monto de estudiantes pendejos</h1>
+                    <h1> Cambiar monto de estudiantes</h1>
                     <ModMonto />
                 </div>
             </div>
