@@ -107,7 +107,7 @@ class ModMonto extends Component {
                 </Col>
                 <Col xs="auto">
                   <Form.Group>
-                    <Form.Label column="sm">Identificacion </Form.Label>
+                    <Form.Label column="sm">Id </Form.Label>
                     <Form.Control
                       id="id"
                       name="id"
