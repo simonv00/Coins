@@ -8,6 +8,7 @@ import Visualizacion from '../Componentes/Visualizacion'
 import DefaultLayout from './Layout/Default'
 import Monto from './Monto'
 import Placa from './Placa'
+import Mensajes from './Mensajes'
 
 //Aplicacion principal
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
                         <DefaultLayout path='/Visualizacion' exact component={Visualizacion}/>
                         <DefaultLayout path='/Monto' exact component={Monto}/>
                         <DefaultLayout path='/Placa' exact component={Placa}/>
+                        <DefaultLayout path='/Mensajes' exact component={Mensajes}/>
                     </Switch>
                 </Router>
             </div>

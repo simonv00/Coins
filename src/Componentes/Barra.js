@@ -28,6 +28,9 @@ class Barra extends Component {
                             <Link to='/Placa' className='Link' >
                                 Agregar placa
                             </Link>
+                            <Link to='/Mensajes' className='Link' >
+                                Agregar mensaje
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
