@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import AgrMensaje from '../Componentes/agrPlaca'
+import AgrMensaje from '../Componentes/agrMensaje'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-class Mensaje extends Component {
+class Mensajes extends Component {
     render() {
         return (
             <div >
@@ -16,4 +16,4 @@ class Mensaje extends Component {
 }
 
 
-export default Mensaje
+export default Mensajes
