@@ -76,7 +76,7 @@ class agrPlaca extends Component {
     } else if (!ItSaved) {
       this.setState({ error: "El id no existe" });
     } else if (!placa) {
-        this.setState({ error: "La placa ingresada no es valido" });
+        this.setState({ error: "La placa ingresada no es valida" });
     }else {
       window.location.reload();
     }
