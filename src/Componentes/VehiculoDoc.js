@@ -68,7 +68,7 @@ class VehiculoDoc extends Component {
   displayError = () => {
     const {
       placas,
-      doc,
+      documentRespuesta,
     } = this.state.validaciones;
     if (doc != this.state.id) {
       this.setState({ error: "Ese ID no existe" });
