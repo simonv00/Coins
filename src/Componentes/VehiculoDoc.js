@@ -102,7 +102,9 @@ class VehiculoDoc extends Component {
   displayError = () => {
     if (this.state.placas.length < 1) {
       this.setState({ error: "Esa persona no existe" });
-    } else {
+    }else if(!this.state.validaciones.ItSaved && this.state.placas.length>0){
+      this.setState({error:"Esta persona no esta en la base de estudiantes"})
+    }else {
       this.setState({ error: "" });
     }
   };
@@ -143,7 +145,7 @@ class VehiculoDoc extends Component {
                 type="submit"
                 id="boton"
               >
-                Enviar
+                Buscar y Guardar
               </Button>
             </Form>
             <div id="Placas"><p>Placas: </p>{this.state.placas.map(number=>(
