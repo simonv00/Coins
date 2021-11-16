@@ -59,6 +59,8 @@ class VehiculoDoc extends Component {
         },
       });
       this.displayError();
+    }).catch((error)=>{
+        console.error(error)
     });
   };
 
