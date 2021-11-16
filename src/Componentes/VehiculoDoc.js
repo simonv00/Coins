@@ -103,7 +103,7 @@ class VehiculoDoc extends Component {
     if (this.state.placas.length < 1) {
       this.setState({ error: "Esa persona no existe" });
     }else if(!this.state.validaciones.ItSaved && this.state.placas.length>0){
-      this.setState({error:"Esta persona no esta en la base de estudiantes"})
+      this.setState({error:"Esa persona no es estudiante"})
     }else {
       this.setState({ error: "" });
     }
