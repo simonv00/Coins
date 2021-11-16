@@ -38,13 +38,11 @@ class agrPlaca extends Component {
     e.preventDefault();
     const {
       id,
-      tipoID,
       placa,
     } = this.state;
 
     Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/agregarPlaca", {
       Numero_Documento: id,
-      Tipo_Documento: tipoID,
       Placa: placa,
     }).then((res) => {
       const {

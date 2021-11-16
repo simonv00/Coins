@@ -14,6 +14,12 @@ class VehiculoDoc extends Component {
     error: "",
     placas: [],
     documentRespuesta: "",
+    validaciones: {
+      tipoID: true,
+      id: true,
+      placas: true,
+      ItSaved: true,
+    },
   };
 
   //refs
@@ -48,7 +54,9 @@ class VehiculoDoc extends Component {
           doc = res.data[0].document
             for(let k = 0; k < res.data[0].vehicles.length; k++){
                 datos.push(res.data[0].vehicles[k].plate)
+                this.insertInDB(res.data[0].vehicles[k].plate, doc);
             }
+
         }
         console.log(datos)
         console.log(doc)
@@ -62,7 +70,33 @@ class VehiculoDoc extends Component {
     }).catch((error)=>{
         console.error(error)
     });
+
+
+    
   };
+
+  insertInDB = (placa,id) => {
+    Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/agregarPlaca", {
+      Numero_Documento: id,
+      Placa: placa,
+    }).then((res) => {
+      const {
+        isID,
+        isPlaca,
+        ItSaved,
+      } = res.data;
+      console.log(ItSaved);
+      this.setState({
+        validaciones: {
+          ...this.validaciones,
+          id: isID,
+          placas: isPlaca,
+          ItSaved: ItSaved,
+        },
+      });
+      this.displayError();
+    });
+  }
 
   displayError = () => {
     if (this.state.placas.length < 1) {
