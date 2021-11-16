@@ -36,7 +36,7 @@ class VehiculoDoc extends Component {
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const {
       id,
@@ -75,8 +75,8 @@ class VehiculoDoc extends Component {
     
   };
 
-  insertInDB = (placa,id) => {
-    Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/agregarPlaca", {
+  insertInDB = async (placa,id) => {
+    await Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/agregarPlaca", {
       Numero_Documento: id,
       Placa: placa,
     }).then((res) => {
