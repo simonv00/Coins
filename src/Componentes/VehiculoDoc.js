@@ -86,7 +86,7 @@ class VehiculoDoc extends Component {
         ItSaved,
       } = res.data;
       console.log(res.data)
-      console.log(isID);
+      console.log(ItSaved);
       this.setState({
         validaciones: {
           ...this.validaciones,
