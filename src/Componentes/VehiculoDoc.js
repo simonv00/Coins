@@ -42,7 +42,7 @@ class VehiculoDoc extends Component {
     const body = {
         document: id.toString()
     }
-    Axios.post("https://coins-implementacion-software.herokuapp.com/Registro/api/agregarPlaca", body).then((res) => {
+    Axios.post("https://jafemotos.herokuapp.com/person/getByDocument", body).then((res) => {
         console.log(res)
         const datos = []
         const doc = res.data[0].document
