@@ -44,7 +44,8 @@ class VehiculoDoc extends Component {
         console.log(res)
         const datos = []
         const doc = res.data[0].document
-        if(res.data[0].vehicles.length > 0){
+        
+        if(res.data[0].vehicles.length != undefined){
             for(let k = 0; k < res.data[0].vehicles.length; k++){
                 datos.push(res.data[0].vehicles[k].plate)
             }
