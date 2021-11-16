@@ -70,7 +70,7 @@ class VehiculoDoc extends Component {
       placas,
       doc,
     } = this.state.validaciones;
-    if (doc != id) {
+    if (doc != this.state.id) {
       this.setState({ error: "Ese ID no existe" });
     } else if (placas.length < 1) {
       this.setState({ error: "Esa persona no tiene placas" });
