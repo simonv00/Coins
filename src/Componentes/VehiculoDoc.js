@@ -85,7 +85,8 @@ class VehiculoDoc extends Component {
         isPlaca,
         ItSaved,
       } = res.data;
-      console.log(ItSaved);
+      console.log(res.data)
+      console.log(isID);
       this.setState({
         validaciones: {
           ...this.validaciones,
