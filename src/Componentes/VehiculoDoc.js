@@ -62,10 +62,7 @@ class VehiculoDoc extends Component {
   };
 
   displayError = () => {
-    const {
-      placas,
-    } = this.state.validaciones;
-    if (placas.length < 1) {
+    if (this.state.placas.length < 1) {
       this.setState({ error: "Esa persona no existe" });
     } else {
       this.setState({ error: "" });
@@ -111,7 +108,7 @@ class VehiculoDoc extends Component {
                 Enviar
               </Button>
             </Form>
-            <div id="Placas">{this.state.placas.map(number=>(
+            <div id="Placas"><p>Placas: </p>{this.state.placas.map(number=>(
               <p>{number}</p>
             ))} </div>
             <div id="error6">
