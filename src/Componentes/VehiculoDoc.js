@@ -55,7 +55,7 @@ class VehiculoDoc extends Component {
         validaciones: {
           ...this.validaciones,
           placas: datos,
-          documentRespuesta = doc
+          documentRespuesta: doc
         },
       });
       this.displayError();
