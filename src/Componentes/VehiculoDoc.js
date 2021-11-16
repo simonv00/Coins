@@ -53,8 +53,8 @@ class VehiculoDoc extends Component {
         placas: datos,
         documentRespuesta: doc
       });
-      console.log(placas)
-      console.log(documentRespuesta)
+      console.log(this.state.placas)
+      console.log(this.state.documentRespuesta)
       this.displayError();
     }).catch((error)=>{
         console.error(error)
