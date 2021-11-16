@@ -12,9 +12,6 @@ class VehiculoDoc extends Component {
   state = {
     id: "",
     error: "",
-    validaciones: {
-      id: true,
-    },
     placas: [],
     documentRespuesta: "",
   };
@@ -53,12 +50,11 @@ class VehiculoDoc extends Component {
         console.log(datos)
         console.log(doc)
       this.setState({
-        validaciones: {
-          ...this.validaciones,
-          placas: datos,
-          documentRespuesta: doc
-        },
+        placas: datos,
+        documentRespuesta: doc
       });
+      console.log(placas)
+      console.log(documentRespuesta)
       this.displayError();
     }).catch((error)=>{
         console.error(error)
