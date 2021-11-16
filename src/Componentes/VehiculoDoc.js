@@ -100,9 +100,20 @@ class VehiculoDoc extends Component {
   }
 
   displayError = () => {
+    const {
+      id,
+      placas,
+      ItSaved,
+    } = this.state.validaciones;
     if (this.state.placas.length < 1) {
-      this.setState({ error: "Esa persona no existe" });
-    }else {
+      this.setState({ error: "Esa persona no existe en motos" });
+    } else if (!placas) {
+      this.setState({ error: "Esa placa esta mal escrita" });
+    }else if (!id) {
+      this.setState({ error: "Esa placa esta mal escrita" });
+    } else if (!ItSaved) {
+      this.setState({ error: "Ese ID no existe en Coins" });
+    } else {
       this.setState({ error: "" });
     }
   };
