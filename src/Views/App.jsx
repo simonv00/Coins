@@ -9,7 +9,7 @@ import DefaultLayout from './Layout/Default'
 import Monto from './Monto'
 import Placa from './Placa'
 import Mensajes from './Mensajes'
-
+import VehiculoDocumento from './VehiculoDocumento'
 //Aplicacion principal
 export default class App extends Component {
     render() {
@@ -23,6 +23,7 @@ export default class App extends Component {
                         <DefaultLayout path='/Monto' exact component={Monto}/>
                         <DefaultLayout path='/Placa' exact component={Placa}/>
                         <DefaultLayout path='/Mensajes' exact component={Mensajes}/>
+                        <DefaultLayout path='/VehiculoDocumento' exact component={VehiculoDocumento}/>
                     </Switch>
                 </Router>
             </div>
