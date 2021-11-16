@@ -42,7 +42,8 @@ class VehiculoDoc extends Component {
     const body = {
         document: id.toString()
     }
-    Axios.post("https://jafemotos.herokuapp.com/person/getByDocument", body).then((res) => {
+    console.log(body)
+    Axios.post("https://jafemotos.herokuapp.com/person2/getByDocument", body).then((res) => {
         console.log(res)
         const datos = []
         const doc = res.data[0].document
@@ -50,7 +51,7 @@ class VehiculoDoc extends Component {
             datos.push(res.data[0].vehicles[k].plate)
         }
         console.log(datos)
-        console.log(document)
+        console.log(doc)
       this.setState({
         validaciones: {
           ...this.validaciones,
