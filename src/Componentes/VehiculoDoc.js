@@ -43,9 +43,9 @@ class VehiculoDoc extends Component {
     Axios.post("https://jafemotos.herokuapp.com/person2/getByDocument", body).then((res) => {
         console.log(res)
         const datos = []
-        const doc = res.data[0].document
-        
-        if(res.data[0].vehicles.length != undefined){
+        var doc;
+        if(res.data[0].vehicles.length !== undefined){
+          doc = res.data[0].document
             for(let k = 0; k < res.data[0].vehicles.length; k++){
                 datos.push(res.data[0].vehicles[k].plate)
             }
@@ -112,7 +112,7 @@ class VehiculoDoc extends Component {
               </Button>
             </Form>
             <div id="Placas"><p>Placas: </p>{this.state.placas.map(number=>(
-              <p>{number}</p>
+              <p key={number}>{number}</p>
             ))} </div>
             <div id="error6">
               <ErrorMessage id="error7">{this.state.error}</ErrorMessage>
