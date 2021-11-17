@@ -308,16 +308,22 @@ class Formulario extends Component {
               {esEstudiante && (
                 <div>
                   <Form.Group>
-                    <Form.Label column="sm">
-                      Escribe la carrera del estudiante{" "}
-                    </Form.Label>
+                    <Form.Label column="sm"> Escribe la carrera del estudiante{" "}</Form.Label>
                     <Form.Control
                       id="carrera"
                       name="carrera"
+                      as="select"
                       onChange={this.actualizar}
-                      placeholder="Carrera"
                       ref={this.checkStudent}
-                    />
+                    >
+                      <option value="Economia">Economia</option>
+                      <option value="Fisica">Fisica</option>
+                      <option value="Ingenieria Administrativa">Ingenieria Administrativa</option>
+                      <option value="Ingenieria Ambiental">Ingenieria Ambiental</option>
+                      <option value="Ingenieria Biomedica">Ingenieria Biomedica</option>
+                      <option value="Ingenieria Mecatronica">Ingenieria Mecatrónica</option>
+                      <option value="Ingenieria de Sistemas y Computacion">Ingenieria de Sistemas y Computacion</option>
+                    </Form.Control>
                   </Form.Group>
                 </div>
               )}
